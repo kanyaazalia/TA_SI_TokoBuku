@@ -29,7 +29,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
 Route::resource('/karyawan', KaryawanController::class)->middleware('admin');
-Route::resource('/buku', BukuController::class)->middleware('user');
+Route::resource('/buku', BukuController::class);
 Route::resource('/buku/kategori', KategoriController::class)->middleware('admin');
 Route::resource('/buku/penulis', PenulisController::class)->middleware('user');
 Route::resource('/buku/penerbit', PenerbitController::class)->middleware('user');

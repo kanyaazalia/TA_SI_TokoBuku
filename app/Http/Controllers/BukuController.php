@@ -17,7 +17,7 @@ class BukuController extends Controller
      */
     public function index()
     {
-        $this->authorize('user');
+        // $this->authorize('user');
         return view('buku.index', [
             'title' => 'Daftar Buku',
             'allBuku' => Buku::orderBy('id_buku')->get()
