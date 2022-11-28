@@ -60,7 +60,7 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'activated_karyawan' => [
             'driver' => 'eloquent',
             'model' => App\Models\ActivatedKaryawan::class,
         ],
@@ -87,7 +87,7 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'activated_karyawan' => [
             'provider' => 'activated_karyawan',
             'table' => 'password_resets',
             'expire' => 60,
