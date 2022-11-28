@@ -18,7 +18,7 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            if (Auth::user()->admin && !Auth::user()->admin && Auth::user()->activated) {
+            if (Auth::user()->admin = 1) {
                 return $next($request);
             }
         }
