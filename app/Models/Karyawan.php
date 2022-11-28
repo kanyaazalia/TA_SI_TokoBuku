@@ -10,6 +10,9 @@ class Karyawan extends Model
 {
     use HasFactory, Notifiable;
 
+    // Mematikan fungsi timestamp laravel
+    public $timestamps = false;
+
     protected $hidden = [
         'password',
         'remember_token',
