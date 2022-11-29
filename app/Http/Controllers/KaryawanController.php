@@ -16,7 +16,7 @@ class KaryawanController extends Controller
     public function index()
     {
         $this->authorize('admin');
-        return view('karyawan.karyawan', [
+        return view('karyawan.index', [
             // Memberikan nilai 'title' untuk halaman
             'title' => 'Daftar Karyawan',
 
