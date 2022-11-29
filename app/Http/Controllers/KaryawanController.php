@@ -21,7 +21,7 @@ class KaryawanController extends Controller
             'title' => 'Daftar Karyawan',
 
             // Mengambil data karyawan dari database
-            'allKaryawan' => Karyawan::orderBy('id_karyawan')->get()
+            'seluruhKaryawan' => Karyawan::orderBy('id_karyawan')->get()
         ]);
     }
 
@@ -37,8 +37,8 @@ class KaryawanController extends Controller
         // Mengambalikan halaman view create
         return view('karyawan.create', [
             'title' => 'Tambah Karyawan',
-            // Mengambil data karyawan yang USERLEVEL kurang dari 3
-            'allKaryawan' => Karyawan::get()
+            // Mengambil data admin karyawan
+            'adminKaryawan' => Karyawan::get()->where('admin', 1)
         ]);
     }
 
@@ -79,7 +79,7 @@ class KaryawanController extends Controller
     {
         $this->authorize('admin');
         // Mengembalikan view show karyawan
-        return view('admin.karyawan.show', [
+        return view('karyawan.show', [
             // Memberikan nilai 'title' untuk halaman
             'title' => 'Detail Karyawan',
 
@@ -98,13 +98,13 @@ class KaryawanController extends Controller
     {
         $this->authorize('admin');
         // Mengembalikan view edit karyawan
-        return view('admin.karyawan.edit', [
+        return view('karyawan.edit', [
             // Memberikan nilai 'title' untuk halaman
             'title' => 'Edit Karyawan',
             // Mengambil data karyawan yang akan ditampilkan di halaman edit, berdasarkan username yang dikirim dari URL
             'karyawan' => $karyawan,
-            // Mengambil data karyawan yang USERLEVEL kurang dari 3
-            'allKaryawan' => Karyawan::get()
+            // Mengambil data admin karyawan
+            'adminKaryawan' => Karyawan::get()->where('admin', 1)
         ]);
     }
 
@@ -121,11 +121,20 @@ class KaryawanController extends Controller
         // Menentukan peraturan validasi data yang akan di edit
         $rules = [
             'nama_karyawan' => 'required|min:3|max:200',
-            'password' => 'required|min:3|max:50|alpha_dash',
             'admin' => 'boolean',
             'report_to' => 'integer|min:1|max:11',
             'activated' => 'boolean'
         ];
+
+        // Jika isi barcode yang dimasukkan berbeda dengan barcode yang sudah ada, maka akan dijalankan validasi kembali
+        // Menghindari error unique
+        if($request->username != $karyawan->username) {
+            $rules['username'] = 'required|min:3|max:50|unique:karyawan|alpha_dash';
+        }
+        // Jika password diisi maka akan diubah
+        if($request->filled('password')) {
+            $rules['password'] = 'required|min:3|max:50|alpha_dash';
+        }
         // Request di validasi menggunakan request yang sudah ada
         $validatedData = $request->validate($rules);
         // Password di enkripsi

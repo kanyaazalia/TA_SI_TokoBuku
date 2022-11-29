@@ -1,70 +1,63 @@
-{{-- Halaman utama untuk menampilkan daftar game --}}
+{{-- Halaman utama untuk menampilkan daftar karyawan --}}
 
 {{-- Halaman ini berada di dalam layout utama --}}
 @extends('layouts.main')
 
 {{-- Bagian yang akan ditampilkan pada section 'container' dalam layout utama --}}
 @section('container')
-    <h1>Daftar Buku</h1>
+    <h1>Daftar Karyawan</h1>
 
-    {{-- Menampilkan alert success bila game berhasil ditambahkan/dietdit --}}
+    {{-- Menampilkan alert success bila karyawan berhasil ditambahkan/dietdit --}}
     @if (session()->has('success'))
         <div class="alert alert-success col-lg-3" role="alert">
             {{ session('success') }}
         </div>
     @endif
 
-    {{-- Link untuk menambahkan game --}}
-    <a class="btn btn-secondary mb-2" href="/games/create">Add Game</a>
+    {{-- Link untuk menambahkan karyawan --}}
+    <a class="btn btn-secondary mb-2" href="/karyawan/create">Tambah Karyawan</a>
 
     <div class="mb-3">
-        {{-- Tabel daftar game --}}
-        <table class="table table-stripped"  id="gamesTable">
+        {{-- Tabel daftar karyawan --}}
+        <table class="table table-stripped"  id="tabelKaryawan">
             {{-- Heading tabel --}}
             <thead class="thead-dark">
                 <tr>
                     <th>#</th>
                     <th>Nama</th>
-                    <th>Developer</th>
-                    <th>Publisher</th>
-                    <th>Genre</th>
-                    <th>Price</th>
-                    <th class="col-lg-2">Release Date</th>
-                    <th>Action</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Lapor ke</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
 
             <tbody>
-                {{-- Loop untuk menampilkan data game yang ada di database --}}
-                @foreach ($games as $game)
+                {{-- Loop untuk menampilkan data karyawan yang ada di database --}}
+                @foreach ($seluruhKaryawan as $karyawan)
                     {{-- Isi tabel --}}
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $game->name }}</td>
-                        <td>{{ $game->developer }}</td>
-                        <td>{{ $game->publisher }}</td>
-                        <td>{{ $game->category->name }}</td>
-                        <td>Rp{{ number_format($game->price, 2, ',', '.') }}</td>
-                        <td class="col-lg-2">{{ $game->release_date }}</td>
+                        <td>{{ $karyawan->nama_karyawan }}</td>
+                        <td>{{ $karyawan->username }}</td>
                         <td>
-                            <a class= "btn btn-success m-1" href="/games/{{ $game->slug }}/edit">Edit</a> 
-                            | 
-
-                            {{-- Form delete game --}}
-                            {{-- Delete game harus dimasukkan ke dalam form --}}
-                            {{-- From akan mengirimkan slug yang akan dikelola method destroy pada controller --}}
-                            <form action="/games/{{ $game->slug }}" method="post">
-                                {{-- "Membajak" form agar menggunakan method delete --}}
-                                {{-- Sesuai dokumentasi untuk controller resource --}}
-                                @method('delete')
-
-                                {{-- Agar terjaga dari Cross Site Scripting --}}
-                                @csrf
-
-                                {{-- Tombol untuk delete game --}}
-                                {{-- Akan menampilkan alert untuk meyakinkan user apakah ingin delete game --}}
-                                <button class="btn btn-danger delete m-1" onclick="return confirm(`Are you sure you want to delete '{{ $game->name }}' ?`)">Delete</button>
-                            </form>
+                            @if ($karyawan->admin === 1)
+                                Admin
+                            @elseif ($karyawan->admin === 0)
+                                User
+                            @endif
+                        </td>
+                        <td>{{ $karyawan->parent->nama_karyawan }}</td>
+                        <td> 
+                            @if ($karyawan->activated === 1)
+                                Aktif
+                            @elseif ($karyawan->activated === 0)
+                                Tidak Aktif
+                            @endif
+                        </td>
+                        <td>
+                            <a class= "btn btn-success m-1" href="/karyawan/{{ $karyawan->username }}/edit">Edit</a> 
                         </td>
                     </tr>
                 @endforeach
@@ -77,7 +70,7 @@
 @section('scripts')
         <script>
         $(document).ready(function(){
-            $('#gamesTable').dataTable();
+            $('#tabelKaryawan').dataTable();
         });
     </script>
 @endsection
