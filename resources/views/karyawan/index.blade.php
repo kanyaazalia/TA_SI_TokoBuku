@@ -15,6 +15,7 @@
     @endif
 
     {{-- Link untuk menambahkan karyawan --}}
+    <a class="btn btn-secondary mb-2" href="/home">Kembali</a>
     <a class="btn btn-secondary mb-2" href="/karyawan/create">Tambah Karyawan</a>
 
     <div class="mb-3">
@@ -35,7 +36,7 @@
 
             <tbody>
                 {{-- Loop untuk menampilkan data karyawan yang ada di database --}}
-                @foreach ($seluruhKaryawan as $karyawan)
+                @foreach ($allKaryawan as $karyawan)
                     {{-- Isi tabel --}}
                     <tr>
                         <td>{{ $loop->iteration }}</td>

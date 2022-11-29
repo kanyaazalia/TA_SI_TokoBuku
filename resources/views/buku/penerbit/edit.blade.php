@@ -6,6 +6,7 @@
 {{-- Bagian yang akan ditampilkan pada section 'container' dalam layout utama --}}
 @section('container')
     <h1>Edit Penerbit: {{ $penerbit->nama_penerbit }}</h1>
+    <a class="btn btn-secondary mb-2" href="/penerbit">Kembali</a>
 
     {{-- Form penambahan game --}}
     <div class="form-group">

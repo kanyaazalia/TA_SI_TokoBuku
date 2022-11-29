@@ -21,7 +21,7 @@ class KaryawanController extends Controller
             'title' => 'Daftar Karyawan',
 
             // Mengambil data karyawan dari database
-            'seluruhKaryawan' => Karyawan::orderBy('id_karyawan')->get()
+            'allKaryawan' => Karyawan::orderBy('id_karyawan')->get()
         ]);
     }
 

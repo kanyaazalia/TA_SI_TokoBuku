@@ -26,32 +26,20 @@
                 @enderror
             </div>
 
-            {{-- <div class="form-group">
-                <label for="slug">Slug/URL: </label>
-                <input class= "form-control" type="text" name="slug" id="slug" required value="{{ old('slug') }}"> --}}
-
-                {{-- Jika data yang diisikan tidak sesuai validasi maka akan mengembalikan pesan error --}}
-                {{-- @error('slug')
-                <div>
-                    {{ $message }}
-                </div>
-                @enderror
-            </div> --}}
-
             <div class="form-group">
-                <label for="id_penerbit">Penerbit: </label>
-                <select class= "form-control" id="id_penerbit" name="id_penerbit">
-                    @foreach($allPenerbit as $penerbit)
-                        @if (old('id_penerbit') == $penerbit->id_penerbit)
-                            <option value="{{ $penerbit->id_penerbit }}" selected>{{ $penerbit->nama_penerbit }}</option>
+                <label for="id_kategori">Kategori: </label>
+                <select class= "form-control" id="id_kategori" name="id_kategori">
+                    @foreach($allKategori as $kategori)
+                        @if (old('id_kategori') == $kategori->id_kategori)
+                            <option value="{{ $kategori->id_kategori }}" selected>{{ $kategori->nama_kategori }}</option>
                         @else
-                            <option value="{{ $penerbit->id_penerbit }}">{{ $category->nama_penerbit }}</option>
+                            <option value="{{ $kategori->id_kategori }}">{{ $kategori->nama_kategori }}</option>
                         @endif
                     @endforeach
                   </select>
 
                 {{-- Jika data yang diisikan tidak sesuai validasi maka akan mengembalikan pesan error --}}
-                @error('id_penerbit')
+                @error('id_kategori')
                     <div>
                         {{ $message }}
                     </div>
@@ -59,13 +47,13 @@
             </div>
 
             <div class="form-group">
-                <label for="id_penulis">Penerbit: </label>
+                <label for="id_penulis">Penulis: </label>
                 <select class= "form-control" id="id_penulis" name="id_penulis">
                     @foreach($allPenulis as $penulis)
                         @if (old('id_penulis') == $penulis->id_penulis)
                             <option value="{{ $penulis->id_penulis }}" selected>{{ $penulis->nama_penulis }}</option>
                         @else
-                            <option value="{{ $penulis->id_penulis }}">{{ $category->nama_penulis }}</option>
+                            <option value="{{ $penulis->id_penulis }}">{{ $penulis->nama_penulis }}</option>
                         @endif
                     @endforeach
                   </select>
@@ -85,7 +73,7 @@
                         @if (old('id_penerbit') == $penerbit->id_penerbit)
                             <option value="{{ $penerbit->id_penerbit }}" selected>{{ $penerbit->nama_penerbit }}</option>
                         @else
-                            <option value="{{ $penerbit->id_penerbit }}">{{ $category->nama_penerbit }}</option>
+                            <option value="{{ $penerbit->id_penerbit }}">{{ $penerbit->nama_penerbit }}</option>
                         @endif
                     @endforeach
                   </select>
@@ -98,9 +86,10 @@
                     @enderror
                 </div>
                 
+                
                 <div class="form-group">
                     <label for="tahun_terbit">Tahun Terbit: </label>
-                    <input class= "form-control" type="date" name="tahun_terbit" id="tahun_terbit" required value="{{ old('tahun_terbit') }}">
+                    <input class= "form-control" type="number" min="0" name="tahun_terbit" id="tahun_terbit" required value="{{ old('tahun_terbit') }}">
     
                     {{-- Jika data yang diisikan tidak sesuai validasi maka akan mengembalikan pesan error --}}
                     @error('tahun_terbit')
@@ -112,7 +101,7 @@
     
                 <div class="form-group">
                     <label for="harga">Harga: </label>
-                    <input class= "form-control" type="number" name="harga" id="harga" required value="{{ old('harga') }}" placeholder="Rp.">
+                    <input class= "form-control" type="number" min="0" name="harga" id="harga" required value="{{ old('harga') }}" placeholder="Rp.">
     
                     {{-- Jika data yang diisikan tidak sesuai validasi maka akan mengembalikan pesan error --}}
                     @error('harga')
@@ -124,7 +113,7 @@
 
             <div class="form-group">
                 <label for="diskon">Diskon: </label>
-                <input class= "form-control" type="text" name="diskon" id="diskon" required value="{{ old('diskon') }}">
+                <input class= "form-control" type="number" min="0" name="diskon" id="diskon" required value="{{ old('diskon') }}">
 
                 {{-- Jika data yang diisikan tidak sesuai validasi maka akan mengembalikan pesan error --}}
                 @error('diskon')
@@ -136,7 +125,7 @@
 
             <div class="form-group">
                 <label for="jumlah_stok">Jumlah Stok: </label>
-                <input class= "form-control" type="text" name="jumlah_stok" id="jumlah_stok" required value="{{ old('jumlah_stok') }}">
+                <input class= "form-control" type="number" min="0" name="jumlah_stok" id="jumlah_stok" required value="{{ old('jumlah_stok') }}">
 
                 {{-- Jika data yang diisikan tidak sesuai validasi maka akan mengembalikan pesan error --}}
                 @error('jumlah_stok')
@@ -147,12 +136,20 @@
             </div>
 
             <div>
-                <div class="container-input form-group">
-                    <label for="discontinue">Discontinue: </label>
-                    <input class="form-check-input" type="hidden" name="discontinue" value="0"/>
-                    <input class="form-check-input" type="checkbox" name="discontinue" value="1" {{ old('discontinue') ? 'checked="checked"' : '' }}>
+                <label for="status" class="">Status: </label> <br>
+                <div class="form-check form-check-inline container-input form-group">
+                    <div class="form-check form-switch">
+                        <input type="checkbox" id="discontinue" value="discontinue">
+                        <label class="form-check-label" for="discontinue">Discontinue</label>
+                      </div>
+                    <div>
+                    @error('discontinue')
+                        <div>
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
-            </div>
+            </div><br>
 
             <input class="btn btn-primary" type="submit" name="submit" id="submit" value="Submit">
         </form>

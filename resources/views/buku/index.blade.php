@@ -15,6 +15,7 @@
     @endif
 
     {{-- Link untuk menambahkan buku --}}
+    <a class="btn btn-secondary mb-2" href="/home">Kembali</a>
     <a class="btn btn-secondary mb-2" href="/buku/create">Tambah Buku</a>
     <a class="btn btn-secondary mb-2" href="/kategori">Kategori</a>
     <a class="btn btn-secondary mb-2" href="/penerbit">Penerbit</a>
@@ -31,7 +32,7 @@
                     <th>Kategori</th>
                     <th>Penulis</th>
                     <th>Penerbit</th>
-                    <th class="col-lg-2">Tahun Terbit</th>
+                    <th>Tahun Terbit</th>
                     <th>Harga</th>
                     <th>Diskon</th>
                     <th>Jumlah Stok</th>
