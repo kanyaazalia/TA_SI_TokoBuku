@@ -11,6 +11,7 @@
     {{-- Form penambahan game --}}
     <div class="form-group">
         <form action="/karyawan" method="post">
+            @method('put')
             {{-- Untuk mencegah terjadinya Cross Site Scripting --}}
             @csrf
 
@@ -50,11 +51,12 @@
             </div>
 
             <div>
-                <label for="admin" class="">Admin: </label>
+                <label for="status" class="">Admin: </label>
                 <div class="form-check form-check-inline container-input form-group">
                     <div class="form-check form-switch">
-                        <input type="checkbox" id="admin" value="{{ old('admin', $karyawan->admin) }}">
-                        <label class="form-check-label" for="admin"></label>
+                        <input class="form-check-input" type="hidden" name="admin" value="0"/>
+                        <input class="form-check-input" type="checkbox" name="admin" value="1" {{ old('admin', $karyawan->admin) ? 'checked="checked"' : '' }}>
+                        {{-- <label class="form-check-label" for="admin"></label> --}}
                       </div>
                     <div>
                     @error('admin')
@@ -85,11 +87,11 @@
             </div>
 
             <div>
-                <label for="activated" class="">Activated: </label>
+                <label for="activated" class="">Aktif: </label>
                 <div class="form-check form-check-inline container-input form-group">
                     <div class="form-check form-switch">
-                        <input type="checkbox" id="activated" value="{{ old('activated', $karyawan->activated) }}">
-                        <label class="form-check-label" for="activated"></label>
+                        <input class="form-check-input" type="hidden" name="activated" value="0"/>
+                        <input class="form-check-input" type="checkbox" name="activated" value="1" {{ old('admin', $karyawan->activated) ? 'checked="checked"' : '' }}>
                       </div>
                     <div>
                     @error('activated')
