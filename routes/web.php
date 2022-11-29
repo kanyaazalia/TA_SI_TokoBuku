@@ -32,4 +32,11 @@ Route::resource('/karyawan', KaryawanController::class)->middleware('admin');
 Route::resource('/buku', BukuController::class)->middleware('auth');
 Route::resource('/kategori', KategoriController::class)->middleware('admin');
 Route::resource('/penerbit', PenerbitController::class)->middleware('auth');
-Route::resource('/penulis', PenulisController::class)->middleware('auth');
+
+Route::get('/penulis', [PenulisController::class, 'index'])->middleware('auth');
+Route::get('/penulis/create', [PenulisController::class, 'create'])->middleware('auth');
+Route::post('/penulis', [PenulisController::class, 'store'])->middleware('auth');
+Route::get('/penulis/{penulis}', [PenulisController::class, 'show'])->middleware('auth');
+Route::get('/penulis/{penulis}/edit', [PenulisController::class, 'edit'])->middleware('auth');
+Route::put('/penulis/{penulis}', [PenulisController::class, 'update'])->middleware('auth');
+Route::delete('/penulis/{penulis}', [PenulisController::class, 'destroy'])->middleware('auth');
