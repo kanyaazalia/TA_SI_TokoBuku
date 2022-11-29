@@ -15,6 +15,7 @@
     @endif
 
     {{-- Link untuk menambahkan penulis --}}
+    <a class="btn btn-secondary mb-2" href="/buku">Kembali</a>
     <a class="btn btn-secondary mb-2" href="/penulis/create">Tambah Penulis</a>
 
     <div class="mb-3">
@@ -38,6 +39,14 @@
                         <td>{{ $penulis->nama_penulis }}</td>
                         <td>
                             <a class= "btn btn-success m-1" href="/penulis/{{ $penulis->id_penulis }}/edit">Edit</a> 
+                            {{-- Form delete game --}}
+                            {{-- Delete game harus dimasukkan ke dalam form --}}
+                            {{-- From akan mengirimkan slug yang akan dikelola method destroy pada controller --}}
+                            <form action="/penulis/{{ $penulis->id_penulis }}" method="post">
+                                {{-- "Membajak" form agar menggunakan method delete --}}
+                                {{-- Sesuai dokumentasi untuk controller resource --}}
+                                {{-- Agar terjaga dari Cross Site Scripting --}}
+                                @csrf
                         </td>
                     </tr>
                 @endforeach

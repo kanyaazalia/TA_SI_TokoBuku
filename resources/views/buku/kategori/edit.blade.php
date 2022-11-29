@@ -9,7 +9,7 @@
 
     {{-- Form penambahan game --}}
     <div class="form-group">
-        <form action="/kategori/{{ $kategori->nama_kategori }}" method="post">
+        <form action="/kategori/{{ $kategori->id_kategori }}" method="post">
             @method('put')
             {{-- Untuk mencegah terjadinya Cross Site Scripting --}}
             @csrf

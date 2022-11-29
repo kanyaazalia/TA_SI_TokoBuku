@@ -15,6 +15,7 @@
     @endif
 
     {{-- Link untuk menambahkan kategori --}}
+    <a class="btn btn-secondary mb-2" href="/buku">Kembali</a>
     <a class="btn btn-secondary mb-2" href="/kategori/create">Tambah Kategori</a>
 
     <div class="mb-3">
@@ -37,7 +38,15 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $kategori->nama_kategori }}</td>
                         <td>
-                            <a class= "btn btn-success m-1" href="/kategori/edit/{{ $kategori->id_kategori }}">Edit</a> 
+                            <a class= "btn btn-success m-1" href="/kategori/{{ $kategori->id_kategori }}/edit">Edit</a> 
+                            {{-- Form delete game --}}
+                            {{-- Delete game harus dimasukkan ke dalam form --}}
+                            {{-- From akan mengirimkan slug yang akan dikelola method destroy pada controller --}}
+                            <form action="/kategori/{{ $kategori->id_kategori }}" method="post">
+                                {{-- "Membajak" form agar menggunakan method delete --}}
+                                {{-- Sesuai dokumentasi untuk controller resource --}}
+                                {{-- Agar terjaga dari Cross Site Scripting --}}
+                                @csrf
                         </td>
                     </tr>
                 @endforeach

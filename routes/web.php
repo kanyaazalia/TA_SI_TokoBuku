@@ -31,5 +31,5 @@ Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
 Route::resource('/karyawan', KaryawanController::class)->middleware('admin');
 Route::resource('/buku', BukuController::class)->middleware('auth');
 Route::resource('/kategori', KategoriController::class)->middleware('admin');
-Route::resource('/penulis', PenulisController::class)->middleware('auth');
 Route::resource('/penerbit', PenerbitController::class)->middleware('auth');
+Route::resource('/penulis', PenulisController::class)->middleware('auth');
