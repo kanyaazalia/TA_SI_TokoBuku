@@ -17,7 +17,7 @@ class BukuController extends Controller
      */
     public function index()
     {
-        // $this->authorize('user');
+        $this->authorize('user');
         return view('buku.index', [
             'title' => 'Daftar Buku',
             'allBuku' => Buku::orderBy('id_buku')->get()
@@ -33,6 +33,9 @@ class BukuController extends Controller
         $this->authorize('user');
         return view('buku.create', [
             'title' => 'Tambah Buku',
+            'allKategori' => Kategori::all(),
+            'allPenulis' => Penulis::all(),
+            'allPenerbit' => Penerbit::all(),
         ]);
     }
     /**

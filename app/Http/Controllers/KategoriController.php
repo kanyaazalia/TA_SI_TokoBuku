@@ -15,7 +15,7 @@ class KategoriController extends Controller
     public function index()
     {
         $this->authorize('admin');
-        return view('buku.kategori.kategori', [
+        return view('buku.kategori.index', [
             'title' => 'Daftar Kategori',
             'allKategori' => Kategori::orderBy('id_kategori')->get()
         ]);
@@ -48,7 +48,7 @@ class KategoriController extends Controller
 
         Kategori::create($validatedData);
         
-        return redirect('/kategori/kategori')->with('berhasil','Kategori ' . $request['nama_kategori'] . ' berhasil ditambahkan.');
+        return redirect('/kategori')->with('berhasil','Kategori ' . $request['nama_kategori'] . ' berhasil ditambahkan.');
     }
     /**
      * Display the specified resource.
@@ -98,7 +98,7 @@ class KategoriController extends Controller
         Kategori::where('id_kategori', $kategori->id_kategori)->update($validatedData);
         
         //Kembali ke product dengan pesan berhasil
-        return redirect('/buku/kategori')->with('berhasil','Kategori ' . $request['judul_kategori'] . ' berhasil di edit.');
+        return redirect('/kategori')->with('berhasil','Kategori ' . $request['judul_kategori'] . ' berhasil di edit.');
     }
 
     /**

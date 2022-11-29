@@ -20,6 +20,8 @@ class Penulis extends Model
         'id_penulis'
     ];
 
+    public $timestamps = false;
+
     // Relasi dari tabel kategori ke buku
     public function buku() {
         return $this->hasMany(Buku::class, 'id_penulis');

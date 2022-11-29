@@ -15,7 +15,7 @@ class PenerbitController extends Controller
     public function index()
     {
         $this->authorize('user');
-        return view('buku.penerbit.penerbit', [
+        return view('buku.penerbit.index', [
             'title' => 'Daftar Penerbit',
             'allPenerbit' => Penerbit::orderBy('id_penerbit')->get()
         ]);
@@ -48,7 +48,7 @@ class PenerbitController extends Controller
 
         Penerbit::create($validatedData);
         
-        return redirect('/penerbit/penerbit')->with('berhasil','Penerbit ' . $request['nama_penerbit'] . ' berhasil ditambahkan.');
+        return redirect('/penerbit')->with('berhasil','Penerbit ' . $request['nama_penerbit'] . ' berhasil ditambahkan.');
     }
     /**
      * Display the specified resource.
@@ -98,7 +98,7 @@ class PenerbitController extends Controller
         Penerbit::where('id_penerbit', $penerbit->id_penerbit)->update($validatedData);
         
         //Kembali ke product dengan pesan berhasil
-        return redirect('/buku/penerbit')->with('berhasil','Penerbit ' . $request['judul_penerbit'] . ' berhasil di edit.');
+        return redirect('/penerbit')->with('berhasil','Penerbit ' . $request['judul_penerbit'] . ' berhasil di edit.');
     }
 
     /**

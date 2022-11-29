@@ -20,6 +20,8 @@ class Penerbit extends Model
         'id_penerbit'
     ];
 
+    public $timestamps = false;
+
     // Relasi dari tabel kategori ke buku
     public function buku() {
         return $this->hasMany(Buku::class, 'id_penerbit');

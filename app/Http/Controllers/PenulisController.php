@@ -15,7 +15,7 @@ class PenulisController extends Controller
     public function index()
     {
         $this->authorize('user');
-        return view('buku.penulis.penulis', [
+        return view('buku.penulis.index', [
             'title' => 'Daftar Penulis',
             'allPenulis' => Penulis::orderBy('id_penulis')->get()
         ]);
@@ -48,7 +48,7 @@ class PenulisController extends Controller
 
         Penulis::create($validatedData);
         
-        return redirect('/penulis/penulis')->with('berhasil','Penulis ' . $request['nama_penulis'] . ' berhasil ditambahkan.');
+        return redirect('/penulis')->with('berhasil','Penulis ' . $request['nama_penulis'] . ' berhasil ditambahkan.');
     }
     /**
      * Display the specified resource.
@@ -98,7 +98,7 @@ class PenulisController extends Controller
         Penulis::where('id_penulis', $penulis->id_penulis)->update($validatedData);
         
         //Kembali ke product dengan pesan berhasil
-        return redirect('/buku/penulis')->with('berhasil','Penulis ' . $request['judul_penulis'] . ' berhasil di edit.');
+        return redirect('/penulis')->with('berhasil','Penulis ' . $request['judul_penulis'] . ' berhasil di edit.');
     }
 
     /**

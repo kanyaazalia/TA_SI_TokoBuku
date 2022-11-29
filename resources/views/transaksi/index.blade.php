@@ -16,9 +16,9 @@
 
     {{-- Link untuk menambahkan buku --}}
     <a class="btn btn-secondary mb-2" href="/buku/create">Tambah Buku</a>
-    <a class="btn btn-secondary mb-2" href="/kategori">Kategori</a>
-    <a class="btn btn-secondary mb-2" href="/penerbit">Penerbit</a>
-    <a class="btn btn-secondary mb-2" href="/penulis">Penulis</a>
+    <a class="btn btn-secondary mb-2" href="/buku/kategori">Kategori</a>
+    <a class="btn btn-secondary mb-2" href="/buku/penerbit">Penerbit</a>
+    <a class="btn btn-secondary mb-2" href="/buku/penulis">Penulis</a>
 
     <div class="mb-3">
         {{-- Tabel daftar buku --}}
