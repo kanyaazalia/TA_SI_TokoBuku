@@ -18,7 +18,7 @@ class User
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            if (Auth::user()->admin === 0) {
+            if (Auth::user()->admin >= 0) {
                 return $next($request);
             }
         }
