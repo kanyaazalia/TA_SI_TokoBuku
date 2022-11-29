@@ -5,7 +5,7 @@
 
 {{-- Bagian yang akan ditampilkan pada section 'container' dalam layout utama --}}
 @section('container')
-    <h1>Edit Kategori {{ $kategori->nama_kategori }}</h1>
+    <h1>Edit Kategori: {{ $kategori->nama_kategori }}</h1>
 
     {{-- Form penambahan game --}}
     <div class="form-group">
