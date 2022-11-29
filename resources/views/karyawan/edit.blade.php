@@ -51,7 +51,7 @@
             </div>
 
             <div>
-                <label for="admin" class="">Admin: </label>
+                <label for="status" class="">Admin: </label>
                 <div class="form-check form-check-inline container-input form-group">
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="hidden" name="admin" value="0"/>
