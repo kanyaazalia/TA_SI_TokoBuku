@@ -137,8 +137,10 @@ class KaryawanController extends Controller
         }
         // Request di validasi menggunakan request yang sudah ada
         $validatedData = $request->validate($rules);
-        // Password di enkripsi
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        // Password di enkripsi bila diisi
+        if($request->filled('password')) {
+            $validatedData['password'] = Hash::make($validatedData['password']);
+        }
         // Mengupdate data yang ada di database dengan data yang sudah di validasi berdasarkan id karyawan yang dikirim lewat URL
         Karyawan::where('id_karyawan', $karyawan->id_karyawan)->update($validatedData);
         // Kembali ke halaman awal dan membawa pesan bernama 'success'

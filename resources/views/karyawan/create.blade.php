@@ -52,7 +52,8 @@
                 <label for="admin" class="">Admin: </label>
                 <div class="form-check form-check-inline container-input form-group">
                     <div class="form-check form-switch">
-                        <input type="checkbox" id="admin" value="admin">
+                        <input class="form-check-input" type="hidden" name="admin" value="0"/>
+                        <input class="form-check-input" type="checkbox" name="admin" value="1" {{ old('admin') ? 'checked="checked"' : '' }}>
                         <label class="form-check-label" for="admin"></label>
                       </div>
                     <div>
@@ -87,7 +88,8 @@
                 <label for="activated" class="">Activated: </label>
                 <div class="form-check form-check-inline container-input form-group">
                     <div class="form-check form-switch">
-                        <input type="checkbox" id="activated" value="activated">
+                        <input class="form-check-input" type="hidden" name="activated" value="0"/>
+                        <input class="form-check-input" type="checkbox" name="activated" value="1" {{ old('activated') ? 'checked="checked"' : '' }}>
                         <label class="form-check-label" for="activated"></label>
                       </div>
                     <div>
