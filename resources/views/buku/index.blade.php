@@ -48,18 +48,18 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $buku->judul_buku }}</td>
-                        <td>{{ $buku->id_kategori }}</td>
-                        <td>{{ $buku->id_penulis }}</td>
-                        <td>{{ $buku->id_penerbit }}</td>
+                        <td>{{ $buku->kategori->nama_kategori }}</td>
+                        <td>{{ $buku->penulis->nama_penulis }}</td>
+                        <td>{{ $buku->penerbit->nama_penerbit }}</td>
                         <td>{{ $buku->tahun_terbit }}</td>
                         <td>Rp{{ number_format($buku->harga, 2, ',', '.') }}</td>
-                        <td>{{ $buku->diskon }}</td>
+                        <td>{{ $buku->diskon }}%</td>
                         <td>{{ $buku->jumlah_stok }}</td>
                         <td> 
                             @if ($buku->discontinue === 0)
-                                Aktif
+                                Masih Diproduksi
                             @elseif ($buku->discontinue === 1)
-                                Tidak Aktif
+                                Sudah Tidak Diproduksi
                             @endif
                         </td>
                         <td>

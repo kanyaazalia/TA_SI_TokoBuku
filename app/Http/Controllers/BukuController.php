@@ -88,9 +88,9 @@ class BukuController extends Controller
         return view('buku.edit', [
             'title' => 'Edit Buku',
             'buku' => $buku,
-            'id_kategori' => Kategori::all(),
-            'id_penulis' => Penulis::all(),
-            'id_penerbit' => Penerbit::all(),
+            'allKategori' => Kategori::all(),
+            'allPenulis' => Penulis::all(),
+            'allPenerbit' => Penerbit::all(),
         ]);
     }
 
@@ -109,10 +109,10 @@ class BukuController extends Controller
             'id_kategori' => 'required|integer|max:11',
             'id_penulis' => 'required|integer|max:11',
             'id_penerbit' => 'required|integer|max:11',
-            'tahun_terbit' => 'required|integer|max:11',
-            'harga' => 'required|integer|max:11',
-            'diskon' => 'required|integer|max:11',
-            'jumlah_stok' => 'required|integer|max:11',
+            'tahun_terbit' => 'required|integer|max:3000|min:0',
+            'harga' => 'required|integer|max:99999999999|min:0',
+            'diskon' => 'required|integer|max:100|min:0',
+            'jumlah_stok' => 'required|integer|max:99999999999|min:0',
             'discontinue' => 'boolean'
         ];
 

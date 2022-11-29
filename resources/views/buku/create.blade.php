@@ -139,7 +139,8 @@
                 <label for="status" class="">Status: </label> <br>
                 <div class="form-check form-check-inline container-input form-group">
                     <div class="form-check form-switch">
-                        <input type="checkbox" id="discontinue" value="discontinue">
+                        <input class="form-check-input" type="hidden" name="discontinue" value="0"/>
+                        <input class="form-check-input" type="checkbox" name="discontinue" value="1" {{ old('discontinue') ? 'checked="checked"' : '' }}>
                         <label class="form-check-label" for="discontinue">Discontinue</label>
                       </div>
                     <div>
