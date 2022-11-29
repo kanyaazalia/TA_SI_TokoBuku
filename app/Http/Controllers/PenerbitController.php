@@ -98,7 +98,7 @@ class PenerbitController extends Controller
         Penerbit::where('id_penerbit', $penerbit->id_penerbit)->update($validatedData);
         
         //Kembali ke product dengan pesan berhasil
-        return redirect('/penerbit')->with('berhasil','Penerbit ' . $request['judul_penerbit'] . ' berhasil di edit.');
+        return redirect('/penerbit')->with('berhasil','Penerbit ' . $request['nama_penerbit'] . ' berhasil di edit.');
     }
 
     /**

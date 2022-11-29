@@ -20,7 +20,7 @@
 
     <div class="mb-3">
         {{-- Tabel daftar penulis --}}
-        <table class="table table-stripped"  id="tabelPenulis">
+        <table class="table table-stripped" id="tabelPenulis">
             {{-- Heading tabel --}}
             <thead class="thead-dark">
                 <tr>

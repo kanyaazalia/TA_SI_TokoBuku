@@ -43,7 +43,7 @@ class PenulisController extends Controller
         $this->authorize('user');
         //Validasi data yang masuk ke database
         $validatedData = $request->validate([
-            'nama_penulis' => 'required|string|max:100',
+            'nama_penulis' => 'required|string|max:200',
         ]);
 
         Penulis::create($validatedData);
@@ -88,7 +88,7 @@ class PenulisController extends Controller
     {
         $this->authorize('user');
         $rules = [
-            'nama_penulis' => 'required|string|max:100',
+            'nama_penulis' => 'required|string|max:200',
         ];
 
         // Data di validasi berdasarkan peraturan yang sudah ditentukan
@@ -98,7 +98,7 @@ class PenulisController extends Controller
         Penulis::where('id_penulis', $penulis->id_penulis)->update($validatedData);
         
         //Kembali ke product dengan pesan berhasil
-        return redirect('/penulis')->with('berhasil','Penulis ' . $request['judul_penulis'] . ' berhasil di edit.');
+        return redirect('/penulis')->with('berhasil','Penulis ' . $request['nama_penulis'] . ' berhasil di edit.');
     }
 
     /**
