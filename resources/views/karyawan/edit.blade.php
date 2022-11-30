@@ -57,8 +57,8 @@
                         <input class="form-check-input" type="hidden" name="admin" value="0"/>
                         <input class="form-check-input" type="checkbox" name="admin" value="1" {{ old('admin', $karyawan->admin) ? 'checked="checked"' : '' }}>
                         <label class="form-check-label" for="admin"></label>
-                      </div>
-                    <div>
+                    </div>
+                <div>
                     @error('admin')
                         <div>
                             {{ $message }}
@@ -77,8 +77,7 @@
                             <option value="{{ $karyawan->id_karyawan }}">{{ $karyawan->nama_karyawan }}</option>
                         @endif
                     @endforeach
-                  </select>
-
+                </select>
                 @error('report_to')
                     <div>
                         {{ $message }}
@@ -91,10 +90,10 @@
                 <div class="form-check form-check-inline container-input form-group">
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="hidden" name="activated" value="0"/>
-                        <input class="form-check-input" type="checkbox" name="activated" value="1" {{ old('activated', $karyawan->activated) ? 'checked="checked"' : '' }}>
+                        <input class="form-check-input" type="checkbox" name="activated" value="1" {{ old('activated', $activated) ? 'checked="checked"' : '' }}>
                         <label class="form-check-label" for="activated">Aktif</label>
-                        </div>
-                    <div>
+                    </div>
+                <div>
                     @error('activated')
                         <div>
                             {{ $message }}

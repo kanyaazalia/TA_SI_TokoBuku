@@ -103,6 +103,7 @@ class KaryawanController extends Controller
             'title' => 'Edit Karyawan',
             // Mengambil data karyawan yang akan ditampilkan di halaman edit, berdasarkan username yang dikirim dari URL
             'karyawan' => $karyawan,
+            'activated' => $karyawan->activated,
             // Mengambil data admin karyawan
             'adminKaryawan' => Karyawan::get()->where('admin', 1)
         ]);
