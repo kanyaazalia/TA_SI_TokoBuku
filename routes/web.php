@@ -8,6 +8,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PenerbitController;
 use App\Http\Controllers\PenulisController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,11 @@ Route::get('/penulis/{penulis}', [PenulisController::class, 'show'])->middleware
 Route::get('/penulis/{penulis}/edit', [PenulisController::class, 'edit'])->middleware('auth');
 Route::put('/penulis/{penulis}', [PenulisController::class, 'update'])->middleware('auth');
 Route::delete('/penulis/{penulis}', [PenulisController::class, 'destroy'])->middleware('auth');
+
+// Rute melihat/menambahkan product ke counter
+Route::get('/transaksi/{id_transaksi}/detail', [TransaksiController::class, 'detail'])->middleware('auth');
+Route::post('/transaksi/{id_transaksi}/detail', [TransaksiController::class, 'detail'])->middleware('auth');
+// Route::get('/transaksi/{id_transaksi}/invoice', [TransaksiController::class, 'invoice'])->middleware('auth');
+// Route::post('/transaksi/{id_transaksi}/invoice', [TransaksiController::class, 'invoice'])->middleware('auth');
+Route::post('/transaksi/{id_transaksi}/addbuku', [TransaksiController::class, 'addBuku'])->middleware('auth');
+Route::post('/transaksi/{id_transaksi}/deletebuku', [TransaksiController::class, 'deleteBuku'])->middleware('auth');
